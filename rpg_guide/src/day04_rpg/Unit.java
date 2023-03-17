@@ -51,22 +51,22 @@ public class Unit {
 		System.out.print("[이름 : " + this.name + "]");
 		System.out.print(" [레벨 : " + this.level + "]");
 		if (ring != null) {
-			System.out.print(" [체력 : " + this.hp + " + " + this.ring.power);
+			System.out.print(" [체력 : " + this.hp + " + " + this.ring.getPower());
 		} else {
 			System.out.print(" [체력 : " + this.hp);
 		}
 		if (ring != null) {
-			System.out.println(" / " + this.maxHp + " + " + this.ring.power + "]");
+			System.out.println(" / " + this.maxHp + " + " + this.ring.getPower() + "]");
 		} else {
 			System.out.println(" / " + this.maxHp + "]");
 		}
 		if (weapon != null) {
-			System.out.print("[공격력 : " + this.att + " + " + this.weapon.power + "]");
+			System.out.print("[공격력 : " + this.att + " + " + this.weapon.getPower() + "]");
 		} else {
 			System.out.print("[공격력 : " + this.att + "]");
 		}
 		if (armor != null) {
-			System.out.print(" [방어력 : " + this.def + " + " + this.armor.power + "]");
+			System.out.print(" [방어력 : " + this.def + " + " + this.armor.getPower() + "]");
 		} else {
 			System.out.print(" [방어력 : " + this.def + "]");
 		}
@@ -77,22 +77,22 @@ public class Unit {
 		if (this.weapon == null) {
 			System.out.println("[무기 : 없음 ]");
 		} else {
-			System.out.println("[무기 : " + this.weapon.name + "]");
+			System.out.println("[무기 : " + this.weapon.getName() + "]");
 		}
 		if (this.armor == null) {
 			System.out.println("[방어구 : 없음 ]");
 		} else {
-			System.out.println("[방어구 : " + this.armor.name + "]");
+			System.out.println("[방어구 : " + this.armor.getName() + "]");
 		}
 		if (this.ring == null) {
 			System.out.println("[반지 : 없음 ]");
 		} else {
-			System.out.println("[반지 : " + this.ring.name + "]");
+			System.out.println("[반지 : " + this.ring.getName() + "]");
 		}
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -100,7 +100,7 @@ public class Unit {
 	}
 
 	public int getLevel() {
-		return level;
+		return this.level;
 	}
 
 	public void setLevel(int level) {
@@ -108,7 +108,7 @@ public class Unit {
 	}
 
 	public int getHp() {
-		return hp;
+		return this.hp;
 	}
 
 	public void setHp(int hp) {
@@ -116,7 +116,7 @@ public class Unit {
 	}
 
 	public int getMaxHp() {
-		return maxHp;
+		return this.maxHp;
 	}
 
 	public void setMaxHp(int maxHp) {
@@ -124,7 +124,7 @@ public class Unit {
 	}
 
 	public int getAtt() {
-		return att;
+		return this.att;
 	}
 
 	public void setAtt(int att) {
@@ -132,7 +132,7 @@ public class Unit {
 	}
 
 	public int getDef() {
-		return def;
+		return this.def;
 	}
 
 	public void setDef(int def) {
@@ -140,7 +140,7 @@ public class Unit {
 	}
 
 	public int getExp() {
-		return exp;
+		return this.exp;
 	}
 
 	public void setExp(int exp) {
@@ -148,15 +148,15 @@ public class Unit {
 	}
 
 	public boolean isParty() {
-		return party;
+		return this.party;
 	}
 
 	public void setParty(boolean party) {
 		this.party = party;
 	}
-	
+
 	public Item getWeapon() {
-		return weapon;
+		return this.weapon;
 	}
 
 	public void setWeapon(Item weapon) {
@@ -164,7 +164,7 @@ public class Unit {
 	}
 
 	public Item getArmor() {
-		return armor;
+		return this.armor;
 	}
 
 	public void setArmor(Item armor) {
@@ -172,10 +172,16 @@ public class Unit {
 	}
 
 	public Item getRing() {
-		return ring;
+		return this.ring;
 	}
 
 	public void setRing(Item ring) {
 		this.ring = ring;
 	}
+	
+	public static void sortGuildList() {
+		
+	}
+
+	
 }

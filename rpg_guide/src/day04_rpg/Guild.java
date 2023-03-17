@@ -3,43 +3,43 @@ package day04_rpg;
 import java.util.ArrayList;
 
 public class Guild {
-	final int PARTY_SIZE = 4;
-	ArrayList<Unit> guildList = new ArrayList<>();
-	Unit[] partyList;
+	private final int PARTY_SIZE = 4;
+	private ArrayList<Unit> guildList = new ArrayList<>();
+	private Unit[] partyList;
 
 	public void setGuild() {
 		Unit temp = new Unit("독고지은", 1, 100, 10, 5, 0);
-		guildList.add(temp);
+		this.guildList.add(temp);
 		temp = new Unit("유후보석", 1, 80, 7, 3, 0);
-		guildList.add(temp);
+		this.guildList.add(temp);
 		temp = new Unit("개미진경", 1, 50, 3, 1, 0);
-		guildList.add(temp);
+		this.guildList.add(temp);
 		temp = new Unit("설사세린", 1, 70, 5, 2, 0);
-		guildList.add(temp);
+		this.guildList.add(temp);
 		temp = new Unit("숭아도하", 1, 200, 4, 8, 0);
-		guildList.add(temp);
+		this.guildList.add(temp);
 		temp = new Unit("zㅣ존예지", 1, 120, 11, 7, 0);
-		guildList.add(temp);
+		this.guildList.add(temp);
 		for (int i = 0; i < 4; i++) {
-			guildList.get(i).setParty(true);
+			this.guildList.get(i).setParty(true);
 		}
-		partyList = new Unit[PARTY_SIZE];
+		this.partyList = new Unit[PARTY_SIZE];
 		int n = 0;
-		for (int i = 0; i < guildList.size(); i++) {
-			if (guildList.get(i).isParty() == true) {
-				partyList[n] = guildList.get(i);
+		for (int i = 0; i < this.guildList.size(); i++) {
+			if (this.guildList.get(i).isParty() == true) {
+				this.partyList[n] = this.guildList.get(i);
 				n += 1;
 			}
 		}
 	}
 
 	public Unit getGuildUnit(int num) {
-		return guildList.get(num);
+		return this.guildList.get(num);
 	}
 
 	public void printAllUnitStaus() {
 		System.out.println("======================================");
-		System.out.println("[골드 : " + Player.money + "]");
+		System.out.println("[골드 : " + Player.getMoney() + "]");
 		System.out.println("============= [길드원] =================");
 		for (int i = 0; i < guildList.size(); i++) {
 			System.out.print("[" + (i + 1) + "번]");
@@ -64,7 +64,7 @@ public class Guild {
 	}
 
 	public void buyUnit() {
-		if (Player.money < 5000)
+		if (Player.getMoney() < 5000)
 			return;
 		String[] n1 = { "박", "이", "김", "최", "유", "지", "오" };
 		String[] n2 = { "명", "기", "종", "민", "재", "석", "광" };
@@ -96,13 +96,13 @@ public class Guild {
 		}
 
 		guildList.add(temp);
-		Player.money -= 5000;
+		Player.setMoney(-5000);
 	}
 
 	public void removeUnit() {
 		printAllUnitStaus();
 		System.out.println("삭제할 번호를 입력하세요 ");
-		int sel = MainGame.scan.nextInt();
+		int sel = MainGame.sc.nextInt();
 		if (guildList.get(sel - 1).isParty()) {
 			System.out.println("파티중인 멤버는 삭제할수 없습니다.");
 		} else {
@@ -123,13 +123,13 @@ public class Guild {
 		System.out.println("================ [파티원] ===============");
 		for (int i = 0; i < PARTY_SIZE; i++) {
 			System.out.print("[" + (i + 1) + "번]");
-			System.out.print(" [이름 : " + partyList[i].name + "]");
-			System.out.print(" [레벨 : " + partyList[i].level + "]");
-			System.out.print(" [체력 : " + partyList[i].hp);
-			System.out.println(" / " + partyList[i].maxHp + "]");
-			System.out.print("[공격력 : " + partyList[i].att + "]");
-			System.out.print(" [방어력 : " + partyList[i].def + "]");
-			System.out.println(" [파티중 : " + guildList.get(i).party + "]");
+			System.out.print(" [이름 : " + this.partyList[i].getName() + "]");
+			System.out.print(" [레벨 : " + this.partyList[i].getLevel() + "]");
+			System.out.print(" [체력 : " + this.partyList[i].getHp());
+			System.out.println(" / " + this.partyList[i].getMaxHp() + "]");
+			System.out.print("[공격력 : " + this.partyList[i].getAtt() + "]");
+			System.out.print(" [방어력 : " + this.partyList[i].getDef() + "]");
+			System.out.println(" [파티중 : " + this.guildList.get(i).isParty() + "]");
 			System.out.println("");
 		}
 		System.out.println("=====================================");
@@ -139,25 +139,25 @@ public class Guild {
 
 		printParty();
 		System.out.println("교체할 번호를 입력하세요 ");
-		int partyNum = MainGame.scan.nextInt();
+		int partyNum = MainGame.sc.nextInt();
 		printAllUnitStaus();
 		System.out.println("참가할 번호를 입력하세요 ");
-		int guildNum = MainGame.scan.nextInt();
+		int guildNum = MainGame.sc.nextInt();
 
-		partyList[partyNum - 1].party = false;
-		guildList.get(guildNum - 1).party = true;
+		this.partyList[partyNum - 1].setParty(false);
+		this.guildList.get(guildNum - 1).setParty(true);
 
 		System.out.println("====================================");
-		System.out.print("[이름 : " + partyList[partyNum - 1].name + "]");
+		System.out.print("[이름 : " + this.partyList[partyNum - 1].getName() + "]");
 		System.out.print("에서 ");
-		System.out.print("[이름 : " + guildList.get(guildNum - 1).name + "]");
+		System.out.print("[이름 : " + this.guildList.get(guildNum - 1).getName() + "]");
 		System.out.println("으로 교체 합니다. ");
 		System.out.println("====================================");
 
 		int n = 0;
-		for (int i = 0; i < guildList.size(); i++) {
-			if (guildList.get(i).party) {
-				partyList[n] = guildList.get(i);
+		for (int i = 0; i < this.guildList.size(); i++) {
+			if (this.guildList.get(i).isParty()) {
+				this.partyList[n] = this.guildList.get(i);
 				n += 1;
 			}
 		}
@@ -172,7 +172,7 @@ public class Guild {
 		while (true) {
 			System.out.println("=============== [길드관리] ================");
 			System.out.println("[1.길드목록] [2.길드원추가] [3.길드원삭제]\n" + "[4.파티원교체] [5.정렬]  [0.뒤로가기]");
-			int sel = MainGame.scan.nextInt();
+			int sel = MainGame.sc.nextInt();
 			if (sel == 1) {
 				printAllUnitStaus();
 			} else if (sel == 2) {
@@ -181,10 +181,17 @@ public class Guild {
 				removeUnit();
 			} else if (sel == 4) {
 				partyChange();
+			} else if (sel == 5) {
+				Unit.sortGuildList();
 			} else if (sel == 0) {
 				break;
 			}
 		}
+	}
+	
+	@SuppressWarnings("unchecked") // 신뢰할 수 없는 Type
+	public ArrayList<Unit> getGuildList() {
+		return (ArrayList<Unit>) guildList.clone();
 	}
 
 }

@@ -3,9 +3,9 @@ package day04_rpg;
 import java.util.ArrayList;
 
 public class Player {
-	static int money;
-	static Guild guild = new Guild();
-	static Inventory inven = new Inventory();
+	private static int money;
+	private static Guild guild = new Guild();
+	private static Inventory inven = new Inventory();
 
 	Player() {
 		money = 100000;
@@ -16,16 +16,28 @@ public class Player {
 		guild.guildMenu();
 	}
 
+	public static Guild getGuild() {
+		return guild;
+	}
+
+	public static void setGuild(Guild guild) {
+		Player.guild = guild;
+	}
+
+	public static Inventory getInven() {
+		return inven;
+	}
+
+	public static void setInven(Inventory inven) {
+		Player.inven = inven;
+	}
+
 	public void inventoryMenu() {
 		inven.inventoryMenu();
 	}
 
 	static public ArrayList<Unit> getGuildList() {
-		return guild.guildList;
-	}
-
-	static public ArrayList<Item> getItemList() {
-		return inven.itemList;
+	    return guild.getGuildList();
 	}
 
 	static public Unit getGuildUnit(int num) {
@@ -33,10 +45,18 @@ public class Player {
 	}
 
 	static public int getGuildSize() {
-		return guild.guildList.size();
+		return guild.getGuildList().size();
 	}
 
 	static public int getItemSize() {
-		return inven.itemList.size();
+		return inven.getItemList().size();
+	}
+	
+	public static int getMoney() {
+		return money;
+	}
+	
+	public static void setMoney(int tempMoney) {
+		money += tempMoney;
 	}
 }
